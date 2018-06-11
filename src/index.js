@@ -6,6 +6,18 @@ import 'html-loader!./index.html';
 
   getAjax(url, generateHTML);
 
+  function getAjax(url, success) {
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState > 3 && xhr.status == 200)
+        removeClass(document.getElementById('app'), 'loading');
+      success(xhr.responseText);
+    };
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.send();
+    return xhr;
+  }
   function generateComments(data) {
     var _data = JSON.parse(data);
     var comments = '';
@@ -15,7 +27,6 @@ import 'html-loader!./index.html';
     }
     return '<ul class="app-topic--comments">' + comments + '</ul>';
   }
-
   function generateHTML(data) {
     document.getElementById('app').innerHTML = `
                       <div class="container-fluid">
@@ -35,25 +46,12 @@ import 'html-loader!./index.html';
                         </div>
                       </div>`;
   }
-
-  function getAjax(url, success) {
-    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    xhr.open('GET', url);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState > 3 && xhr.status == 200)
-        removeClass(document.getElementById('app'), 'loading');
-        success(xhr.responseText);
-    };
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.send();
-    return xhr;
-  }
   function removeClass(el, className) {
     if (el.classList)
       el.classList.remove(className)
     else if (hasClass(el, className)) {
       var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
-      el.className=el.className.replace(reg, ' ')
+      el.className = el.className.replace(reg, ' ')
     }
   }
 })();
