@@ -94,6 +94,15 @@ body {
       margin-top: 20px;
     }
   }
+  .loading & {
+    background-image: url(./loading.svg);
+    background-position: center;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    > div {
+      visibility: hidden;
+    }
+  }
 }
 
 .app-topic--header {
