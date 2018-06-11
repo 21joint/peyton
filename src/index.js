@@ -41,8 +41,8 @@ import 'html-loader!./index.html';
     xhr.open('GET', url);
     xhr.onreadystatechange = function () {
       if (xhr.readyState > 3 && xhr.status == 200)
+        document.getElementById('app').classList.remove('loading');
         success(xhr.responseText);
-        document.getElementById('app').setAttribute('class', '');
     };
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.send();
