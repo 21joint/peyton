@@ -41,11 +41,19 @@ import 'html-loader!./index.html';
     xhr.open('GET', url);
     xhr.onreadystatechange = function () {
       if (xhr.readyState > 3 && xhr.status == 200)
-        document.getElementById('app').classList.remove('loading');
+        removeClass(document.getElementById('app'), 'loading');
         success(xhr.responseText);
     };
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.send();
     return xhr;
+  }
+  function removeClass(el, className) {
+    if (el.classList)
+      el.classList.remove(className)
+    else if (hasClass(el, className)) {
+      var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+      el.className=el.className.replace(reg, ' ')
+    }
   }
 })();
