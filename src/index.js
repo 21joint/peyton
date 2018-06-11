@@ -11,8 +11,8 @@ import 'html-loader!./index.html';
     xhr.open('GET', url);
     xhr.onreadystatechange = function () {
       if (xhr.readyState > 3 && xhr.status == 200)
+        success(xhr.responseText);
         removeClass(document.getElementById('app'), 'loading');
-      success(xhr.responseText);
     };
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.send();
@@ -28,6 +28,7 @@ import 'html-loader!./index.html';
     return '<ul class="app-topic--comments">' + comments + '</ul>';
   }
   function generateHTML(data) {
+    let commentsHtml = generateComments(data);
     document.getElementById('app').innerHTML = `
                       <div class="container-fluid">
                         <div class="row">
@@ -39,7 +40,7 @@ import 'html-loader!./index.html';
                               </div>
                               <div class="app-topic--body scrollable-y">
                                 <h3><i>The question goes here...</i></h3>
-                                ${generateComments(data)}
+                                ${commentsHtml}
                               </div>
                             </div>
                           </div>
