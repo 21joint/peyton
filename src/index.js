@@ -1,5 +1,6 @@
 import 'index.scss';
 import 'html-loader!./index.html';
+import _ from 'lodash'
 import 'lodash/each';
 import 'lodash/groupBy';
 import 'lodash/sortBy';
