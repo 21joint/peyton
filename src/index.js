@@ -1,6 +1,10 @@
 import 'index.scss';
 import 'html-loader!./index.html';
-import _ from 'lodash';
+import 'lodash/each';
+import 'lodash/groupBy';
+import 'lodash/sortBy';
+import 'lodash/reverse';
+
 
 (function () {
   var url = 'https://cors-anywhere.herokuapp.com/http://api.publicinput.com:8099/Api/HighlightedComments?key=ser31d0ood0jne967olxy0wwyqng9chf&set=test';
