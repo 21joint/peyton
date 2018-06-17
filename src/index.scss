@@ -5,6 +5,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -34,7 +35,7 @@ body {
   margin-right: -15px;
 }
 
-[class^="col-"] {
+[class^="col"] {
   position: relative;
   width: 100%;
   min-height: 1px;
